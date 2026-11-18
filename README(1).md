@@ -2,8 +2,9 @@
 
 Interaktywna symulacja rozmowy z postacią AI, w której uczysz się uspokajać wściekłego przełożonego. Po rozmowie AI-trener ocenia Twoją postawę. Projekt zaprojektowałem jako ćwiczenie z pisania scenariuszy, projektowania zachowania postaci AI i testowania jakości odpowiedzi.
 
-**Demo:** [WSTAW LINK DO STRONY]
-**Autor:** Ignacy [NAZWISKO] · [LINK DO LINKEDINA]
+**Demo:** https://gacek00.github.io/Za-burte/
+
+**Autor:** Ignacy Ziarkiewicz · https://www.linkedin.com/in/ignacy-ziarkiewicz-13aa79215/
 
 ---
 
@@ -49,7 +50,10 @@ Dzięki temu można „wygrać” rozmowę i dostać słabą ocenę postawy (np.
 
 Trener ocenia w skali 1-5: **Uczciwość, Odwaga, Empatia, Spokój i ton**. Dostaje transkrypt, opis mechaniki Ahaba i dziennik sędziego, więc jego rady opierają się na tym, co faktycznie zadziałało w rozmowie.
 
-> [TU DOPISZ 2-3 ZDANIA: jak Twoja praca przy ocenianiu i oznaczaniu odpowiedzi modeli (Outlier.AI) wpłynęła na rubrykę. Np. jakie kryteria jakości stosowałeś tam i jak przełożyłeś je na tę rubrykę.]
+W mojej własnej ocenie, użyłem umiejętności nabytych przy pracy nad rozwojem modeli AI w firmach takich jak Outlier czy Micro1. Było dla mnie ważne, żeby model zachowywał spójność językową, tematyczną i nie halucynował oraz nie kręcił się w kółko, tylko prowadził rozmowę dalej. Trzeba było to naprawiać w kolejnych iteracjach, ale uważam, że ostateczny efekt jest sprawny i satysfakcjonujący.
+
+W dużej mierze polegałem również na umiejętnościach nabytych przy pracy w game devie oraz nad filmami. Starałem się, żeby doświadczenie prowadziło do ciekawych konkluzji i miało swoją dramaturgię. Np. dlatego po odkryciu prawdy o Ahabie, wchodzi narrator i dokańcza, co myśli nasz bohater, zaznaczając, że niebezpieczeństwo sytuacji dopiero się zaczyna. To może pozostawić użytkownikowi smak na więcej.
+
 
 ## Wersje i lekcje
 
@@ -66,7 +70,7 @@ Trener ocenia w skali 1-5: **Uczciwość, Odwaga, Empatia, Spokój i ton**. Dost
 1. **Zasady do kodu, wypowiedzi do modelu.** Wszystko, co model „sam ustalał”, rozjeżdżało się z tym, co mówił.
 2. **Czego nie opiszesz w regułach, model zgaduje.** Zgadywał np. skutek donosu na kamrata.
 3. **Trener bez wiedzy o mechanice doradza rzeczy, które brzmią dobrze, ale nie działają.**
-4. **Wskazówki krok po kroku zamieniają odkrywanie w instrukcję.** Lepsza jest jedna zachęta w celu.
+4. **Wskazówki krok po kroku zamieniają odkrywanie w instrukcję.** Lepiej opisać generalną regułę w rubryce "celu" i dać graczowi eksperymentować, niż dyktować mu co ma pisać, żeby zdać.
 5. **Napięcie powinno spadać tak szybko, jak szybko gracz rozumie mechanikę.**
 
 ## Dziennik testów
@@ -92,5 +96,3 @@ Wybrane obserwacje z moich notatek po sesjach testowych w pięciu wersjach. Każ
 ## Narzędzia i transparentność
 
 Stronę zbudowałem z pomocą Claude (Anthropic). Scenariusz, mechanikę, kartę postaci, testy, wnioski i decyzje o kolejnych wersjach przygotowałem sam. Rozmowy z Ahabem generuje model językowy.
-
-Ukończone kursy: [TYTUŁ KURSU, np. AI Fluency for Creative Work (Anthropic)], [DATA].
