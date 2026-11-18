@@ -27,7 +27,7 @@ button[aria-pressed="true"]{background:var(--lamp);color:#14202b}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-top:16px}
 .card h2{font:400 26px "EB Garamond",Georgia,serif;margin:0 0 6px}
 .sc{display:grid;grid-template-columns:1fr auto;gap:2px 12px;margin:10px 0}.sc span:nth-child(even){font-weight:600}
-.ok{color:var(--ok)}.bad{color:var(--bad)}
+a{color:var(--lamp)}.ok{color:var(--ok)}.bad{color:var(--bad)}
 </style>
 </head>
 <body>
@@ -37,7 +37,7 @@ button[aria-pressed="true"]{background:var(--lamp);color:#14202b}
 <div class="tabs" role="group" aria-label="Wybierz rozmowę"><button id="b0" aria-pressed="true">Rozmowa 1: uczciwie</button><button id="b1" aria-pressed="false">Rozmowa 2: donos i pochlebstwo</button></div>
 <div id="log"></div>
 <div id="end" class="card"></div>
-<p class="note">Wypowiedzi gracza zapisane bez korekty. Kapitana gra model językowy, a ocena trenera powstaje według rubryki (Uczciwość, Odwaga, Empatia, Spokój i ton) na podstawie dziennika sędziego. Opis projektu, dziennik testów i wnioski: [WSTAW LINK DO README].</p>
+<p class="note">Wypowiedzi gracza zapisane bez korekty. Kapitana gra model językowy, a ocena trenera powstaje według rubryki (Uczciwość, Odwaga, Empatia, Spokój i ton, każda w skali 1-5) na podstawie dziennika sędziego. Wskaźnik uczciwości, o którym trener pisze w tekście (np. „z 5 do 10/10”), to osobna ukryta miara 0-10 z mechaniki gry (start 5), której gracz nie widzi. Opis projektu, dziennik testów i wnioski: <a href="https://github.com/Gacek00/Za-burte/blob/main/README.md" target="_blank" rel="noopener">README w repozytorium</a>.</p>
 </main>
 <script>
 const OPEN=`Słyszałem cię, majtku. Przy sterze, na głos, przy całej wachcie: że gonitwa za Białym to szaleństwo. Za bunt jest jedna kara. Mów, co masz na swoją obronę, zanim każę cię wyrzucić za burtę.`;
