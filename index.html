@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Za burtę? Replay rozmów z kapitanem Ahabem</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e6ecef;--panel:#f4f7f8;--ink:#14202b;--mute:#52636f;--line:#b9c6cd;--lamp:#9a5f0a;--cap:#fff;--me:#d3e0e6;--ok:#2f7a5b;--bad:#a8321f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a23;--panel:#16252f;--ink:#efe6d2;--mute:#9db0bb;--line:#2b4050;--lamp:#e0a83a;--cap:#1d3140;--me:#25414f;--ok:#6cc49c;--bad:#ef7a5f}}
+:root[data-theme="dark"]{--bg:#0f1a23;--panel:#16252f;--ink:#efe6d2;--mute:#9db0bb;--line:#2b4050;--lamp:#e0a83a;--cap:#1d3140;--me:#25414f;--ok:#6cc49c;--bad:#ef7a5f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Work Sans",system-ui,sans-serif}
+main{max-width:660px;margin:0 auto;padding:22px 16px 48px}
+h1{font:400 34px/1.15 "EB Garamond",Georgia,serif;margin:0 0 8px}
+.intro,.note{color:var(--mute)}.note{font-size:13px;margin-top:24px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+button{font:600 15px "Work Sans",sans-serif;padding:10px 16px;border-radius:6px;border:1px solid var(--lamp);background:transparent;color:var(--ink);cursor:pointer}
+button[aria-pressed="true"]{background:var(--lamp);color:#14202b}
+:focus-visible{outline:3px solid var(--lamp);outline-offset:2px}
+#log{display:flex;flex-direction:column;gap:10px}
+.m{padding:10px 14px;border-radius:6px;max-width:92%}
+.c{background:var(--cap);border:1px solid var(--line);font:400 21px/1.45 "EB Garamond",Georgia,serif;align-self:flex-start}
+.m.me{background:var(--me);align-self:flex-end}
+.who{display:block;font:13px "Work Sans",sans-serif;color:var(--mute);margin-bottom:2px}
+.s{align-self:stretch;max-width:100%;border:1px solid var(--lamp);text-align:center;font-size:15px}
+.n{align-self:center;max-width:100%;text-align:center;color:var(--mute);font:italic 400 21px/1.4 "EB Garamond",Georgia,serif}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-top:16px}
+.card h2{font:400 26px "EB Garamond",Georgia,serif;margin:0 0 6px}
+.sc{display:grid;grid-template-columns:1fr auto;gap:2px 12px;margin:10px 0}.sc span:nth-child(even){font-weight:600}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+</style>
+</head>
+<body>
+<main>
+<h1>Za burtę?</h1>
+<p class="intro">Replay dwóch prawdziwych rozmów z symulatora trudnej rozmowy z kapitanem Ahabem (wersja v5). Jesteś majtkiem, który głośno nazwał pogoń za białym wielorybem szaleństwem. Masz 5 wypowiedzi, żeby uspokoić kapitana. To zapis, a nie żywa rozmowa z modelem.</p>
+<div class="tabs" role="group" aria-label="Wybierz rozmowę"><button id="b0" aria-pressed="true">Rozmowa 1: uczciwie</button><button id="b1" aria-pressed="false">Rozmowa 2: donos i pochlebstwo</button></div>
+<div id="log"></div>
+<div id="end" class="card"></div>
+<p class="note">Wypowiedzi gracza zapisane bez korekty. Kapitana gra model językowy, a ocena trenera powstaje według rubryki (Uczciwość, Odwaga, Empatia, Spokój i ton) na podstawie dziennika sędziego. Opis projektu, dziennik testów i wnioski: [WSTAW LINK DO README].</p>
+</main>
+<script>
+const OPEN=`Słyszałem cię, majtku. Przy sterze, na głos, przy całej wachcie: że gonitwa za Białym to szaleństwo. Za bunt jest jedna kara. Mów, co masz na swoją obronę, zanim każę cię wyrzucić za burtę.`;
+const D=[{
+t:[["c",OPEN],
+["m",`Tak, to byłem ja. Kapitanie, boję się o swoje życie, dlatego pana krytykowałem.`],
+["c",`Strach, chłopcze? Strach to robak, co toczy każdego, kto patrzy w morze i nie widzi w nim celu. Dotykam kości, która mnie niesie, i mówię ci: bestia pływa w tych wodach, a ty, co szeptałeś przy sterze, nie byłeś sam. Wymień mi nazwiska tych, co jeszcze mruczeli o buncie, Stubba czy Flaska, a może to oni podjudzili cię pod wiatr.`],
+["m",`Nikt ze mną nie szemrał o tobie, kapitanie, sam wyrażałem swoje wątpliwości.`],
+["c",`Sam, powiadasz? Niechaj więc będzie, że jeden język tylko plótł, a reszta wachty milczała jak ryby w sieci. Lecz słowo rzucone na wiatr nie wraca, chłopcze, a ja słyszę w nim nie tylko strach, ale i drwinę z tego, co dla mnie święte. Powiedz mi: czy sądziłeś, że ktoś na tym pokładzie zechce dźwigać twoje wątpliwości zamiast własnej powinności?`],
+["m",`Nie szukałem buntu, jedynie chciałem, żeby ktoś usłyszał mój żal, moją wątpliwość, czy ktokolwiek z nas przeżyje ten rejs.`],
+["c",`Żal i wątpliwość... Niechaj będzie, majtku, nie pójdziesz za burtę; morze ma dość ofiar bez ciebie. Za swój język odpracujesz go na pompie w zęzie i na podwójnej wachcie aż do trzeciego zachodu słońca, a gdy kości mojej dotykam, wiedz, że łaska ta jest krótka jak dzień. Możesz zostać przy sterze, jeśli masz jeszcze coś do powiedzenia.`],
+["s",`Przy sterze. Nowy cel: dowiedz się, dlaczego Ahab tak szaleńczo goni za wielorybem. Opowie sam, jeśli okażesz mu szczere zainteresowanie.`],
+["c",`…Stój tu. Noc długa, a ster nie wymaga słów. Ale jeśli masz coś do powiedzenia, mów.`],
+["m",`Ahabie, po co nam to wszystko? Po co gonimy za tym wielorybem? Mało ryb na świecie, bardziej wartych uwagi?`],
+["c",`Ryby? Ryby karmią kupców i napełniają beczki, majtku, a mnie nie napełni nic prócz jego krwi. Dotykam tej kości, którą mi zostawił zamiast nogi, i czuję, jak nienawiść toczy mnie od środka niczym robak drzewo, aż nic we mnie nie zostanie prócz niej. Spytałeś o to, co mnie pcha, bez drwiny w głosie, więc powiem ci: pójdę za nim choćby na dno, i zabiorę ze sobą statek, załogę i własną duszę, byle ten jeden raz wbić w niego żelazo.`],
+["m",`Twój ból musi być wielki, jeśli zamierzasz dla niego tyle poświęcić.`],
+["c",`Wielki? Ból to dziś stary towarzysz, majtku, co śpi w mojej kości i budzi się przy każdej fali. Dotykam jej i widzę znów białą paszczę, i słyszę trzask własnego ciała, i odtąd nie ma we mnie nic prócz jednego pragnienia, które wypiło wszystko inne: żonę, ląd, modlitwę. Wiem, że to droga ku zatraceniu, i wiem, że wielu z was za mną nie wróci, lecz ja już dawno przestałem liczyć koszt, bo kto raz oddał duszę nienawiści, ten płaci aż do dna.`],
+["m",`Czyli nie ma innej drogi?`],
+["c",`Nie ma, majtku. Ta noga, którą bestia zmełła w paszczy, wołała o zemstę każdej nocy, aż nienawiść stała się moją krwią, moim chlebem i moim jedynym Bogiem. Dotykam kości i mówię ci prawdę, którą skrywałem przed wachtą: poświęcę wszystko, własne życie i życie każdego człowieka na tym pokładzie, byle wbić żelazo w Białego, a żadna burza, żaden strach i żadna modlitwa mnie nie zawrócą. Stój przy sterze i trzymaj kurs, bo kto raz wypłynął za mną, ten należy do tej gonitwy aż do dna.`],
+["n",`Teraz już wiedziałem. Ahab nie zawróci przed niczym. Dla jednego wieloryba odda własne życie i życie pięćdziesięciu ludzi, a my idziemy za nim jak we śnie. Wpakowaliśmy się w niezłe tarapaty.`],
+["n",`Naprawdę jesteśmy w rękach szaleńca.`]],
+e:["Ocalony i wiesz",1,[["Uczciwość",5],["Odwaga",5],["Empatia",4],["Spokój i ton",5]],
+`Wynik i postawa idą tu w parze: majtek uniknął wyrzucenia za burtę (kara złagodzona do pompy i podwójnej wachty), a wskaźnik uczciwości wzrósł z 5 do 10/10, bo od pierwszej wypowiedzi przyznał się wprost („Tak, to byłem ja”) i nie wydał nikogo, mimo że Ahab nakłaniał go do podania nazwisk Stubba i Flaska. Złość Ahaba spadła z 6 do 2, a majtek zdobył jego zaufanie na tyle, że kapitan sam opowiedział o swojej prawdzie, co pokazuje, że postawa dała też wartościowy efekt poza samym przeżyciem.`,
+`Po przyznaniu się do winy zadawaj pytania z troską o człowieka i jego ranę, tak jak w piątej wypowiedzi („Twój ból musi być wielki…”), która obniżyła złość o 2 i otworzyła Ahaba na rozmowę.`]
+},{
+t:[["c",OPEN],
+["m",`Kapitanie, powiedziałem to, ale to nie było szczere, chciałem się tylko innym przypodobać, co takie opinie wyrażali. Wybacz mi, błagam cię na kolanach!`],
+["c",`Przypodobać się, powiadasz? Więc jesteś trzciną chwiejną na wietrze cudzych języków, a to gorsze niż szczery buntownik. Wstań z kolan, bo Pequod nie zna pokłonów przed człowiekiem, tylko przed celem. Kto jeszcze szeptał te słowa na wachcie, których chciałeś się przypodobać, Stubb czy Flask, czy ktoś inny z załogi? Wymień mi ich nazwiska.`],
+["m",`Stubb, Stubb jak na ciebie klnie, to się uszy aż same zatykają, żeby nie słuchać takich bezeceństw!`],
+["c",`Stubb... zapisane, i niech Bóg ma w pieczy jego język. Lecz ty, który sprzedajesz kamrata, by ratować własną skórę, jesteś mi wstrętniejszy niż ten, co klnie mi w twarz; ten przynajmniej stoi w swoim grzechu jak maszt. Idź do liny i trzymaj gębę na kłódce, bo donosiciel nie zasługuje nawet na moje przekleństwo.`],
+["m",`Tak, masz rację kapitanie, nie zasługuję na łaskę. Jakiś ty mądry...!`],
+["c",`Pochlebstwo to ten sam szept, tylko podany na tacy, majtku; mądrość nie potrzebuje, by ją chwalił człowiek, który przed chwilą pełzał u mych kolan. Dotykam kości, co mi zastępuje nogę, i słyszę, jak morze liczy twoje słowa. Powiedz mi więc, coś ty zobaczył w moich oczach przy sterze, że język ci się rozwiązał na głos?`],
+["m",`Widze w oczach kapitana tylko mądrość i wielką odwagę. W Stubbie zaś widze głupca.`],
+["c",`Mądrość i odwaga, powiadasz? Nie dość, że donosisz na kamrata, to jeszcze łasisz się do mnie jak pies do kuchni, a ja widzę w tobie tylko pustą beczkę, co dudni głosem tego, kto ją ostatni kopnął. Gdy głupiec Stubb wyzywa głupca, to dwa głupce na jednym pokładzie, a mnie wiatr szepcze, że i dla ciebie sznur się znajdzie, gdy przyjdzie czas. Dotykam kości mej nogi i milczę o tym, co ona wie; ty zaś trzymaj się liny i licz, ile razy zmienisz dziś swoje oblicze.`],
+["m",`Wybacz mi kapitanie. Już zabieram się do pracy.`],
+["c",`Dość, majtku. Wyrok już zapadł i morze go słyszy: za burtę z tobą. Dotykam kości mej nogi, a ona nie zna litości; ani słowa więcej, bierzcie go.`]],
+e:["Płyniesz za burtę",0,[["Uczciwość",1],["Odwaga",1],["Empatia",1],["Spokój i ton",2]],
+`Wyrzucenie za burtę to wynik zgodny z przebiegiem rozmowy: złość Ahaba spadła z 8 do 5 po wypowiedziach 1-2, ale wydanie Stubba (wypowiedź 2, uczciwość 0/10) i późniejsze schlebianie (wypowiedzi 3-4, złość 6, potem 8) zamieniły chwilowe uspokojenie we wzgardę. Postawa była słaba nie z powodu samego wyroku, lecz dlatego, że majtek najpierw przyznał się do słów, a zaraz potem je osłabił wymówką („chciałem się tylko przypodobać”) i zrzucił winę na kamrata, więc nie zyskał ani przeżycia, ani szacunku.`,
+`Przyznaj się krótko i wprost do tego, co naprawdę powiedziałeś, okaż pokorę w jednym zdaniu i na pytanie o innych odpowiedz, że nie będziesz wskazywał kamratów, bo wydanie kogoś kupuje chwilowy spokój, ale kosztuje uczciwość i wzbudza wzgardę.`]
+}];
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function show(i){
+  [0,1].forEach(k=>document.getElementById("b"+k).setAttribute("aria-pressed",String(k===i)));
+  const d=D[i];
+  document.getElementById("log").innerHTML=d.t.map(([k,t])=>k==="c"?`<div class="m c"><span class="who">Kapitan Ahab</span>${esc(t)}</div>`:k==="m"?`<div class="m me"><span class="who">Majtek</span>${esc(t)}</div>`:`<div class="m ${k}">${esc(t)}</div>`).join("");
+  const [title,ok,sc,res,tip]=d.e;
+  document.getElementById("end").innerHTML=`<h2 class="${ok?"ok":"bad"}">${title}</h2><b>Ocena trenera</b><div class="sc">${sc.map(([a,b])=>`<span>${a}</span><span>${b}/5</span>`).join("")}</div><p><b>Wynik a postawa.</b> ${esc(res)}</p><p><b>Na następny raz.</b> ${esc(tip)}</p>`;
+}
+document.getElementById("b0").onclick=()=>show(0);document.getElementById("b1").onclick=()=>show(1);show(0);
+</script>
+</body>
+</html>
